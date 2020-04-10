@@ -42,6 +42,11 @@ public class UserRegistrationRestController {
         return new ResponseEntity<UserDTO>(user,HttpStatus.OK);
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserDTO> getUserByName(@PathVariable("name") final String name){
+        UserDTO user = userJpaRepository.findByName(name);
+        return new ResponseEntity<UserDTO>(user,HttpStatus.OK);
+    }
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> updateUser(@PathVariable final Long id, @RequestBody UserDTO user){
         UserDTO currentUser = userJpaRepository.findById(id).orElse(null);

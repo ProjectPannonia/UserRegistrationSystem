@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,8 @@ public class UserRegistrationRestController {
     }
     //Create new user
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> createUser(@RequestBody final UserDTO user){
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO user){
+        logger.info("Creating User: {}",user);
         if(userJpaRepository.findByName(user.getName()) != null){
             return new ResponseEntity<UserDTO>(new CustomErrorType("Unable to create new user. A user with name: " + user.getName() + " already exist."),HttpStatus.CONFLICT);
         }

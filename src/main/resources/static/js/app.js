@@ -10,6 +10,9 @@ app.config(function($routeProvider){
     }).when('/update-user/:id',{
             templateUrl : '/template/userupdation.html',
             controller : 'usersDetailsController'
+    }).when('/search-a-user',{
+            templateUrl : 'template/searchuser.html',
+            controller : 'searchByNameController'
     }).otherwise({
         redirectTo : '/home',
         templateUrl : '/template/home.html',

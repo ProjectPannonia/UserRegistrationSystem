@@ -1,0 +1,2 @@
+INSERT INTO USERS(user_id,name,address,email) VALUES (1,'Adam','Bakonyszombathely','letenyeidam89@gmail.com');
+INSERT INTO USERS(user_id,name,address,email) VALUES(2,'Dorka','Farád','dorcy@szundibundi.com');

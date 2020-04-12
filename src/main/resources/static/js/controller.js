@@ -43,6 +43,22 @@ app.controller('listUserController',function($scope,$http,$location,$route){
     }
 });
 
+// Search user by name controller
+app.controller('searchByNameController', function($scope,$http,$location,$routeParams,$route){
+    $scope.searchByName = function(){
+    let a = $scope.name;
+    console.log(a);
+        $http({
+            method : 'GET',
+            url : 'http://localhost:8080/api/user/name/' + a
+        }).then(function(response){
+            $scope.searchedUsers = response.data;
+        });
+    }
+    $scope.getTheName = function(){
+        console.log($scope.name);
+    }
+});
 // UsersDetails page controller
 app.controller('usersDetailsController',function($scope,$http,$location,$routeParams,$route){
     $scope.userId = $routeParams.id;

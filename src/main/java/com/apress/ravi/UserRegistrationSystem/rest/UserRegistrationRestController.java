@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -56,9 +56,13 @@ public class UserRegistrationRestController {
     }
     // Get user by name
     @GetMapping("/name/{name}")
-    public ResponseEntity<UserDTO> getUserByName(@PathVariable("name") final String name){
-        UserDTO user = userJpaRepository.findByName(name);
-        return new ResponseEntity<UserDTO>(user,HttpStatus.OK);
+    public ResponseEntity<List<UserDTO>> getUserByName(@PathVariable("name") final String name){
+        List<UserDTO> user = userJpaRepository.findAll();
+        List<UserDTO> selectedUsers = new ArrayList<>();
+        for (UserDTO u : user){
+            if(u.getName().equals(name)) selectedUsers.add(u);
+        }
+        return new ResponseEntity<List<UserDTO>>(user,HttpStatus.OK);
     }
     // Update user by id
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -24,7 +24,7 @@ public class UserDTO {
 
     @Email(message = "error.email.email")
     @NotEmpty(message = "error.email.empty")
-    @Length(max = 80, message = "error.email.lenth")
+    @Length(max = 80, message = "error.email.length")
     @Column(name = "EMAIL")
     private String email;
 

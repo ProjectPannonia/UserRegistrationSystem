@@ -62,7 +62,7 @@ public class UserRegistrationRestController {
         for (UserDTO u : user){
             if(u.getName().equals(name)) selectedUsers.add(u);
         }
-        return new ResponseEntity<List<UserDTO>>(user,HttpStatus.OK);
+        return new ResponseEntity<List<UserDTO>>(selectedUsers,HttpStatus.OK);
     }
     // Update user by id
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -55,9 +55,7 @@ app.controller('searchByNameController', function($scope,$http,$location,$routeP
             $scope.searchedUsers = response.data;
         });
     }
-    $scope.getTheName = function(){
-        console.log($scope.name);
-    }
+    $scope.searchedUsers = null;
 });
 // UsersDetails page controller
 app.controller('usersDetailsController',function($scope,$http,$location,$routeParams,$route){

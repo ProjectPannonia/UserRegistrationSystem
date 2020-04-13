@@ -68,16 +68,16 @@ app.controller('usersDetailsController',function($scope,$http,$location,$routePa
         $scope.user = response.data;
     });
 
-    $scope.submitUserForm = function(){
-        $http({
-            method : 'POST',
-            url : 'http://localhost:8080/api/user',
-            data : $scope.user,
-        }).then(function(response){
-            $location.path("/list-all-users");
-            $route.reload();
-        },function(errResponse){
-            $scope.errorMessage = "Error while updating User - Error Message: " + errorResponse.data.errorMessage;
-        });
-    }
+    $scope.submitUserForm = function() {
+            $http({
+                method : 'POST',
+                url : 'http://localhost:8080/api/user/',
+                data : $scope.user,
+            }).then(function(response){
+                $location.path("/list-all-users");
+                $route.reload();
+            },function(errResponse){
+                $scope.errorMessage = errResponse.data.errorMessage;
+            });
+        };
 });
